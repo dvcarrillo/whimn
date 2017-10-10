@@ -1,4 +1,6 @@
 # What Happens In My Neighborhood?
+Want to see what is happening at home from anywhere in the world and using 
+social networks? Here comes WHIMN! 
 
 ## What does it do?
 Tweets back a real-time photo when you mention a specific user on Twitter.
