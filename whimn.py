@@ -1,21 +1,24 @@
 ##############################################################################
 # David Vargas Carrillo - October 2017
 # github.com/dvcarrillo
-# File: tweet.py
+# File: whimn.py
 # Script that tweets an image taken by the camera each time that someone
 # mentions the specified Twitter account
 ##############################################################################
 
-import tweepy
 import datetime
 import time
 import sys
+import tweepy
+from picamera import PiCamera
+
+camera = PiCamera()
 
 # Log in to Twitter
-auth = tweepy.OAuthHandler('consumer_key',
-    'consumer_secret')
-auth.set_access_token('access_key',
-    'access_secret')
+auth = tweepy.OAuthHandler('k2C650dTflbGY9t1jZK92R7vZ',
+                           'HD5shobNUdPtAiBAQs6UbFUIHUCn7jLu18McxPnXonirirT5pJ')
+auth.set_access_token('234523159-pwMVglBunmBDD1iggW1PXvxgTFIrcZewtbFNBMyt',
+                      'ce1VvxwHqstINlsLzSPPBWOvSkzISLFmfc09u0k16Wd0Z')
 
 # Get the API variable
 api = tweepy.API(auth)
@@ -41,8 +44,15 @@ while True:
         mention_id = mentions[0].id
         # If the account is mentioned after the script is launched, it sends a tweet
         if mention_time >= actual_time:
-            text = '@' + str(mention_user) + ' Cats make people happy!'
-            photo_status = api.update_with_media("./random_cat.jpeg", text, 
+            # Capture the photo
+            camera.start_preview()
+            time.sleep(5)
+            camera.capture('./image.jpg')
+            camera.stop_preview()
+            # Make the new tweet
+            text = '@' + str(mention_user) + ' This is my neighborhood at '
+            text += str(datetime.datetime.utcnow().time()) + ' (UTC time)'
+            photo_status = api.update_with_media("./image.jpg", text, 
                 in_reply_to_status_id = mention_id)
             actual_time = datetime.datetime.utcnow()
             print 'A new tweet has been sent! (' + str(datetime.datetime.utcnow()) +')'
