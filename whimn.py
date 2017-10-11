@@ -15,10 +15,10 @@ from picamera import PiCamera
 camera = PiCamera()
 
 # Log in to Twitter
-auth = tweepy.OAuthHandler('k2C650dTflbGY9t1jZK92R7vZ',
-                           'HD5shobNUdPtAiBAQs6UbFUIHUCn7jLu18McxPnXonirirT5pJ')
-auth.set_access_token('234523159-pwMVglBunmBDD1iggW1PXvxgTFIrcZewtbFNBMyt',
-                      'ce1VvxwHqstINlsLzSPPBWOvSkzISLFmfc09u0k16Wd0Z')
+auth = tweepy.OAuthHandler('consumer_key',
+                           'consumer_secret')
+auth.set_access_token('access_key',
+                      'access_secret')
 
 # Get the API variable
 api = tweepy.API(auth)
