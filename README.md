@@ -12,4 +12,4 @@ Tokens can be obtained at [https://apps.twitter.com](https://apps.twitter.com).
  - Raspberry Pi Camera
  - At least one Twitter account
 
- Uses [tweepy API](https://github.com/tweepy/tweepy) to connect to Twitter
+ Uses [tweepy API](https://github.com/tweepy/tweepy) to connect to Twitter.
